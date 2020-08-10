@@ -12,10 +12,12 @@ onready var pivot = $Pivot
 
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	set_mouse_captured()
 	
 
 func _input(event):
+	set_mouse_visible()
+		
 	if event is InputEventMouseMotion:
 		# deg2rad change float degres to radones, related to 3D physics
 		rotate_y(deg2rad(-event.relative.x * mouse_sens))
@@ -47,3 +49,10 @@ func _process(delta):
 	# Second argument is time. If we omit interpolate, the movement less subtle (brusco)
 	velocity.linear_interpolate(velocity, acel * delta)
 	move_and_slide(velocity, Vector3.UP)
+
+func set_mouse_captured():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func set_mouse_visible():
+	if Input.is_action_just_pressed("ui_cancel"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
