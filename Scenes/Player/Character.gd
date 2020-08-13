@@ -6,7 +6,9 @@ export var movement_velolocity = 10
 
 var movement_aceleration = 5
 var number_of_jumps = 0
-var mouse_sensitivity = 0.5 
+var mouse_sensitivity = 0.5
+const MAX_DEGREE_ROTATION = 10
+const MIN_DEGREE_ROTATION = -90
 
 var movement_vector = Vector3()
 var vertical_vector = Vector3()
@@ -41,10 +43,10 @@ func move_camera_direction(event):
 	if event is InputEventMouseMotion:
 		# deg2rad change float degres to radones, related to 3D physics
 		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
-		# Move camera(pivot) vertically. rotate is what you are goint to move
+		# Move camera(pivot) vertically. Rotate is what you are goint to move
 		pivot.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
-		# Limit the max and min angle degrees camera. rotation is what was already rotated
-		pivot.rotation.x = clamp(pivot.rotation.x, deg2rad(-90), deg2rad(90))
+		# Limit the max and min angle degrees camera. Rotation is what was already rotated
+		pivot.rotation.x = clamp(pivot.rotation.x, deg2rad(MIN_DEGREE_ROTATION), deg2rad(MAX_DEGREE_ROTATION))
 
 
 func move_player(delta):
