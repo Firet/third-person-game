@@ -1,12 +1,16 @@
 extends KinematicBody
 
+export var gravityForce = 20
+export var jumpForce = 10
 export var vel = 10
 var acel = 5
+var numberOfJumps = 0
 
 var mouse_sens = 0.5 
 
 var direccion = Vector3()
 var velocity = Vector3()
+var verticalDirection = Vector3()
 
 onready var pivot = $Pivot
 
@@ -20,10 +24,11 @@ func _input(event):
 	move_camera_direction(event)
 
 func _process(delta):
-	
-	#Every frame we are assigning a Vector3 to direccion. If it's not here it going to throw errors
+	#Every frame we are assigning a Vector3 to direction. If it's not here it going to throw errors
 	direccion = Vector3() 
 	move_player()
+	jump(delta)
+	
 	# We normalize the direccion
 	direccion = direccion.normalized()
 	velocity = direccion * vel
@@ -53,7 +58,7 @@ func move_camera_direction(event):
 func move_player():
 	if Input.is_action_pressed("move_forward"):
 		# Basis is related to matrix tranform 
-		# in z we rest to going forward
+		# in z we substract to going forward
 		direccion -= transform.basis.z
 	elif Input.is_action_pressed("move_backward"):
 		direccion += transform.basis.z
@@ -62,3 +67,22 @@ func move_player():
 		direccion -= transform.basis.x
 	elif Input.is_action_pressed("move_right"):
 		direccion += transform.basis.x
+
+func jump(delta):
+	move_and_slide(verticalDirection, Vector3.UP)
+	
+	if is_on_floor():
+		numberOfJumps = 0
+
+	if not is_on_floor():
+		verticalDirection.y -= gravityForce * delta
+	
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		if numberOfJumps == 0:
+			verticalDirection.y  = jumpForce
+			numberOfJumps = 1
+	
+	if Input.is_action_just_pressed("jump") and not is_on_floor():
+		if numberOfJumps == 1:
+			verticalDirection.y = jumpForce
+			numberOfJumps = 2
