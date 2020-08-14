@@ -4,12 +4,12 @@ export var gravity_force = 20
 export var jump_force = 10
 export var movement_velolocity = 10
 
-var movement_aceleration = 5
-var number_of_jumps = 0
-var mouse_sensitivity = 0.5
+const MOVEMENT_ACELERATION = 5
+const MOUSE_SENSITIVITY = 0.5
 const MAX_DEGREE_ROTATION = 10
 const MIN_DEGREE_ROTATION = -90
 
+var number_of_jumps = 0
 var movement_vector = Vector3()
 var vertical_vector = Vector3()
 
@@ -42,9 +42,9 @@ func set_mouse_visible():
 func move_camera_direction(event):
 	if event is InputEventMouseMotion:
 		# deg2rad change float degres to radones, related to 3D physics
-		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
+		rotate_y(deg2rad(-event.relative.x * MOUSE_SENSITIVITY))
 		# Move camera(pivot) vertically. Rotate is what you are goint to move
-		pivot.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
+		pivot.rotate_x(deg2rad(-event.relative.y * MOUSE_SENSITIVITY))
 		# Limit the max and min angle degrees camera. Rotation is what was already rotated
 		pivot.rotation.x = clamp(pivot.rotation.x, deg2rad(MIN_DEGREE_ROTATION), deg2rad(MAX_DEGREE_ROTATION))
 
@@ -68,7 +68,7 @@ func move_player(delta):
 	movementDirection = movementDirection.normalized()
 	movement_vector = movementDirection * movement_velolocity
 	# Second argument is time. If we omit interpolate, the movement less subtle
-	movement_vector.linear_interpolate(movement_vector, movement_aceleration * delta)
+	movement_vector.linear_interpolate(movement_vector, MOVEMENT_ACELERATION * delta)
 	move_and_slide(movement_vector, Vector3.UP)
 
 
