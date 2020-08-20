@@ -2,19 +2,25 @@ extends KinematicBody
 
 export var gravity_force = 20
 export var jump_force = 10
-export var movement_velolocity = 10
+export var default_speed = 7
+
 
 const MOVEMENT_ACELERATION = 5
 const MOUSE_SENSITIVITY = 0.5
 const MAX_DEGREE_ROTATION = 10
 const MIN_DEGREE_ROTATION = -90
+const SPRINT_SPEED = 25
+const SHOOT_DAMAGE = 100
 
+var current_speed
+var is_sprinting = false
 var number_of_jumps = 0
 var movement_vector = Vector3()
 var vertical_vector = Vector3()
 
 onready var pivot = $Pivot
-
+onready var timer_sprint = $TimerSprint
+onready var enemy_cast = $Pivot/Camera/Enemycast
 
 func _ready():
 	set_mouse_captured()
@@ -25,9 +31,12 @@ func _input(event):
 	move_camera_direction(event)
 
 
-func _process(delta): 
-	move_player(delta)
-	jump(delta)
+func _process(_delta: float): 
+	
+	sprint()
+	shoot()
+	move_player(_delta)
+	jump(_delta)
 
 
 func set_mouse_captured():
@@ -66,7 +75,7 @@ func move_player(delta):
 
 	# We normalize the movementDirection
 	movementDirection = movementDirection.normalized()
-	movement_vector = movementDirection * movement_velolocity
+	movement_vector = movementDirection * current_speed
 	# Second argument is time. If we omit interpolate, the movement less subtle
 	movement_vector.linear_interpolate(movement_vector, MOVEMENT_ACELERATION * delta)
 	move_and_slide(movement_vector, Vector3.UP)
@@ -90,3 +99,27 @@ func jump(delta):
 		if number_of_jumps == 1:
 			vertical_vector.y = jump_force
 			number_of_jumps = 2
+
+
+func shoot():
+	if Input.is_action_just_pressed("shoot") and enemy_cast.is_colliding():
+		var target = enemy_cast.get_collider()
+		if target.is_in_group("Enemy"):
+			print("shoot the enemy")
+			target.health -= SHOOT_DAMAGE
+
+			
+func sprint():
+	current_speed = default_speed
+	if Input.is_action_just_pressed("move_sprint") and not is_sprinting:
+		is_sprinting = true
+		timer_sprint.start()
+	elif Input.is_action_just_pressed("move_sprint") and is_sprinting: 
+		is_sprinting = false
+
+	if is_sprinting:
+		current_speed = SPRINT_SPEED
+
+
+func _on_Timer_sprint_timeout():
+	is_sprinting = false
