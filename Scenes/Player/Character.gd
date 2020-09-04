@@ -2,7 +2,7 @@ extends KinematicBody
 
 export var gravity_force = 20
 export var jump_force = 10
-export var default_speed = 7
+export var default_speed = 3
 
 
 const MOVEMENT_ACELERATION = 5
@@ -18,9 +18,19 @@ var number_of_jumps = 0
 var movement_vector = Vector3()
 var vertical_vector = Vector3()
 
+enum {
+	IDLE,
+	WALKING,
+	RUNNING,
+	JUMPING
+}
+
+var state = IDLE
+
 onready var pivot = $Pivot
 onready var timer_sprint = $TimerSprint
 onready var enemy_cast = $Pivot/Camera/Enemycast
+onready var anim = $Player/AnimationPlayer
 
 func _ready():
 	set_mouse_captured()
@@ -32,6 +42,16 @@ func _input(event):
 
 
 func _process(_delta: float): 
+	
+	match state:
+		IDLE:
+			anim.play("idle")
+		WALKING:
+			anim.play("walking")
+		RUNNING:
+			anim.play("running")
+		JUMPING:
+			anim.play("jumping")
 	
 	sprint()
 	shoot()
@@ -64,10 +84,13 @@ func move_player(delta):
 	if Input.is_action_pressed("move_forward"):
 		# Basis is related to matrix tranform 
 		# in z we substract to going forward
+#		state = WALKING
 		movementDirection -= transform.basis.z
 	elif Input.is_action_pressed("move_backward"):
 		movementDirection += transform.basis.z
-	
+	else: 
+		state = IDLE
+		
 	if Input.is_action_pressed("move_left"):
 		movementDirection -= transform.basis.x
 	elif Input.is_action_pressed("move_right"):
@@ -118,6 +141,7 @@ func sprint():
 		is_sprinting = false
 
 	if is_sprinting:
+		state = RUNNING
 		current_speed = SPRINT_SPEED
 
 
