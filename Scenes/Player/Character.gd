@@ -15,9 +15,11 @@ const SHOOT_DAMAGE = 100
 var current_speed
 var is_sprinting = false
 var is_walking = false
+var is_jumping = false
 var number_of_jumps = 0
 var movement_vector = Vector3()
 var vertical_vector = Vector3()
+var state = IDLE
 
 enum {
 	IDLE,
@@ -26,7 +28,6 @@ enum {
 	JUMPING
 }
 
-var state = IDLE
 
 onready var pivot = $Pivot
 onready var timer_sprint = $TimerSprint
@@ -43,9 +44,6 @@ func _input(event):
 
 
 func _process(_delta: float): 
-	
-	
-	
 	manage_states()
 	sprint()
 	shoot()
@@ -74,7 +72,9 @@ func move_camera_direction(event):
 func manage_states():
 	current_speed = default_speed
 	
-	if is_sprinting:
+	if is_jumping:
+		state = JUMPING
+	elif is_sprinting:
 		state = RUNNING
 		current_speed = SPRINT_SPEED
 	elif is_walking:
@@ -94,7 +94,7 @@ func manage_states():
 			anim.play("jumping")
 
 
-func walking(delta):		
+func walking(delta):
 	#Every frame we are assigning a Vector3 to direction. If it's not here it going to throw errors
 	var movementDirection = Vector3()
 	if Input.is_action_pressed("move_forward"):
@@ -127,11 +127,13 @@ func jump(delta):
 	
 	if is_on_floor():
 		number_of_jumps = 0
+		is_jumping = false
 
 	if not is_on_floor():
 		vertical_vector.y -= gravity_force * delta
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		is_jumping = true
 		if number_of_jumps == 0:
 			vertical_vector.y  = jump_force
 			number_of_jumps = 1
