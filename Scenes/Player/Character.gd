@@ -14,6 +14,7 @@ const SHOOT_DAMAGE = 100
 
 var current_speed
 var is_sprinting = false
+var is_walking = false
 var number_of_jumps = 0
 var movement_vector = Vector3()
 var vertical_vector = Vector3()
@@ -43,19 +44,12 @@ func _input(event):
 
 func _process(_delta: float): 
 	
-	match state:
-		IDLE:
-			anim.play("idle")
-		WALKING:
-			anim.play("walking")
-		RUNNING:
-			anim.play("running")
-		JUMPING:
-			anim.play("jumping")
 	
+	
+	manage_states()
 	sprint()
 	shoot()
-	move_player(_delta)
+	walking(_delta)
 	jump(_delta)
 
 
@@ -77,24 +71,48 @@ func move_camera_direction(event):
 		# Limit the max and min angle degrees camera. Rotation is what was already rotated
 		pivot.rotation.x = clamp(pivot.rotation.x, deg2rad(MIN_DEGREE_ROTATION), deg2rad(MAX_DEGREE_ROTATION))
 
+func manage_states():
+	current_speed = default_speed
+	
+	if is_sprinting:
+		state = RUNNING
+		current_speed = SPRINT_SPEED
+	elif is_walking:
+		state = WALKING
+	else:
+		state = IDLE
+		current_speed = default_speed
 
-func move_player(delta):
+	match state:
+		IDLE:
+			anim.play("idle")
+		WALKING:
+			anim.play("walking")
+		RUNNING:
+			anim.play("running")
+		JUMPING:
+			anim.play("jumping")
+
+
+func walking(delta):		
 	#Every frame we are assigning a Vector3 to direction. If it's not here it going to throw errors
 	var movementDirection = Vector3()
 	if Input.is_action_pressed("move_forward"):
 		# Basis is related to matrix tranform 
 		# in z we substract to going forward
-#		state = WALKING
 		movementDirection -= transform.basis.z
+		is_walking = true
 	elif Input.is_action_pressed("move_backward"):
 		movementDirection += transform.basis.z
-	else: 
-		state = IDLE
-		
-	if Input.is_action_pressed("move_left"):
-		movementDirection -= transform.basis.x
+		is_walking = true
 	elif Input.is_action_pressed("move_right"):
 		movementDirection += transform.basis.x
+		is_walking = true
+	elif Input.is_action_pressed("move_left"):
+		movementDirection -= transform.basis.x
+		is_walking = true
+	else:
+		is_walking = false
 
 	# We normalize the movementDirection
 	movementDirection = movementDirection.normalized()
@@ -133,17 +151,11 @@ func shoot():
 
 			
 func sprint():
-	current_speed = default_speed
 	if Input.is_action_just_pressed("move_sprint") and not is_sprinting:
 		is_sprinting = true
 		timer_sprint.start()
 	elif Input.is_action_just_pressed("move_sprint") and is_sprinting: 
 		is_sprinting = false
-
-	if is_sprinting:
-		state = RUNNING
-		current_speed = SPRINT_SPEED
-
 
 func _on_Timer_sprint_timeout():
 	is_sprinting = false
