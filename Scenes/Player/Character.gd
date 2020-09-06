@@ -74,10 +74,10 @@ func manage_states():
 	
 	if is_jumping:
 		state = JUMPING
-	elif is_sprinting:
+	elif is_sprinting and is_walking:
 		state = RUNNING
 		current_speed = SPRINT_SPEED
-	elif is_walking:
+	elif is_walking and not is_sprinting:
 		state = WALKING
 	else:
 		state = IDLE
