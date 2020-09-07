@@ -3,7 +3,7 @@
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.0196078, 0.243137, 0.835294, 1 )
 
-[node name="Platform" type="Spatial"]
+[node name="Platforms" type="Spatial"]
 
 [node name="Platform1" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3406, 5.5, 0 )
