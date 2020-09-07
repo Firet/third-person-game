@@ -4,7 +4,7 @@
 [ext_resource path="res://Materials/Grid.material" type="Material" id=2]
 [ext_resource path="res://Scenes/Player/Character.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Platform/Platform.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Enemy/EnemyRed.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Enemy/RedEnemy.tscn" type="PackedScene" id=6]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 0.5, 0.5 )
@@ -40,12 +40,12 @@ shape = SubResource( 2 )
 
 [node name="Enemies" type="Spatial" parent="."]
 
-[node name="Enemy" parent="Enemies" groups=[
+[node name="RedEnemy" parent="Enemies" groups=[
 "Enemy",
 ] instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6 )
 
-[node name="Enemy2" parent="Enemies" groups=[
+[node name="RedEnemy2" parent="Enemies" groups=[
 "Enemy",
 ] instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 0, -4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -6 )
