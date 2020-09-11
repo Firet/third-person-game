@@ -10,12 +10,17 @@ const MOUSE_SENSITIVITY = 0.5
 const MAX_DEGREE_ROTATION = 10
 const MIN_DEGREE_ROTATION = -90
 const SPRINT_SPEED = 25
+const CROUCH_MOVE_SPEED = 1
+const TIME_TO_CROUCH = 20
+const CROUCH_HEIGHT = 0.5
+const DEFAULT_HEIGHT = 1
 const SHOOT_DAMAGE = 100
 
 var current_speed
 var is_sprinting = false
 var is_walking = false
 var is_jumping = false
+var is_crouching = false
 var number_of_jumps = 0
 var movement_vector = Vector3()
 var vertical_vector = Vector3()
@@ -25,7 +30,8 @@ enum {
 	IDLE,
 	WALKING,
 	RUNNING,
-	JUMPING
+	JUMPING,
+	CROUCHING
 }
 
 
@@ -33,6 +39,8 @@ onready var pivot = $Pivot
 onready var timer_sprint = $TimerSprint
 onready var enemy_cast = $Pivot/Camera/Enemycast
 onready var anim = $Player/AnimationPlayer
+onready var collision_player = $CollisionShape
+
 
 func _ready():
 	set_mouse_captured()
@@ -49,6 +57,7 @@ func _process(_delta: float):
 	shoot()
 	walking(_delta)
 	jump(_delta)
+	crouch(_delta)
 
 
 func set_mouse_captured():
@@ -69,11 +78,14 @@ func move_camera_direction(event):
 		# Limit the max and min angle degrees camera. Rotation is what was already rotated
 		pivot.rotation.x = clamp(pivot.rotation.x, deg2rad(MIN_DEGREE_ROTATION), deg2rad(MAX_DEGREE_ROTATION))
 
+
 func manage_states():
 	current_speed = default_speed
 	
 	if is_jumping:
 		state = JUMPING
+	elif is_crouching:
+		state = CROUCHING
 	elif is_sprinting and is_walking:
 		state = RUNNING
 		current_speed = SPRINT_SPEED
@@ -92,6 +104,8 @@ func manage_states():
 			anim.play("running")
 		JUMPING:
 			anim.play("jumping")
+		# CROUCHING:
+			# anim.play("crouching")
 
 
 func walking(delta):
@@ -159,5 +173,17 @@ func sprint():
 	elif Input.is_action_just_pressed("move_sprint") and is_sprinting: 
 		is_sprinting = false
 
+
 func _on_Timer_sprint_timeout():
-	is_sprinting = false
+	is_sprinting = false		
+
+
+func crouch(delta):
+	if Input.is_action_pressed("crouch"):
+		is_crouching = true
+		collision_player.shape.height -= TIME_TO_CROUCH * delta
+		current_speed = CROUCH_MOVE_SPEED
+		collision_player.shape.height = clamp(collision_player.shape.height, CROUCH_HEIGHT, DEFAULT_HEIGHT)
+	else:
+		is_crouching = false
+		collision_player.shape.height = 1
