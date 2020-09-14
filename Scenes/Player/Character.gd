@@ -25,6 +25,7 @@ var number_of_jumps = 0
 var movement_vector = Vector3()
 var vertical_vector = Vector3()
 var state = IDLE
+var velocity 
 
 enum {
 	IDLE,
@@ -133,11 +134,11 @@ func walking(delta):
 	movement_vector = movementDirection * current_speed
 	# Second argument is time. If we omit interpolate, the movement less subtle
 	movement_vector.linear_interpolate(movement_vector, MOVEMENT_ACELERATION * delta)
-	move_and_slide(movement_vector, Vector3.UP)
+	velocity = move_and_slide(movement_vector, Vector3.UP)
 
 
 func jump(delta):
-	move_and_slide(vertical_vector, Vector3.UP)
+	velocity = move_and_slide(vertical_vector, Vector3.UP)
 	
 	if is_on_floor():
 		number_of_jumps = 0
