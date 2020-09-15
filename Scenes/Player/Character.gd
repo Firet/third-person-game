@@ -105,8 +105,8 @@ func manage_states():
 			anim.play("running")
 		JUMPING:
 			anim.play("jumping")
-		# CROUCHING:
-			# anim.play("crouching")
+		CROUCHING:
+			anim.play("crouch-walking")
 
 
 func walking(delta):
