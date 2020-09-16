@@ -32,7 +32,8 @@ enum {
 	WALKING,
 	RUNNING,
 	JUMPING,
-	CROUCHING
+	CROUCH_IDLE,
+	CROUCH_WALKING
 }
 
 
@@ -85,8 +86,10 @@ func manage_states():
 	
 	if is_jumping:
 		state = JUMPING
-	elif is_crouching:
-		state = CROUCHING
+	elif is_crouching and !is_walking:
+		state = CROUCH_IDLE
+	elif is_crouching and is_walking:
+		state = CROUCH_WALKING
 	elif is_sprinting and is_walking:
 		state = RUNNING
 		current_speed = SPRINT_SPEED
@@ -105,7 +108,9 @@ func manage_states():
 			anim.play("running")
 		JUMPING:
 			anim.play("jumping")
-		CROUCHING:
+		CROUCH_IDLE:
+			anim.play("crouch-idle")
+		CROUCH_WALKING:
 			anim.play("crouch-walking")
 
 
