@@ -6,14 +6,7 @@ albedo_color = Color( 0.0196078, 0.243137, 0.835294, 1 )
 [node name="Platforms" type="Spatial"]
 
 [node name="Platform1" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3406, 5.5, 0 )
-use_collision = true
-width = 7.0
-depth = 39.103
-material = SubResource( 1 )
-
-[node name="Platform2" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8406, 2.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 use_collision = true
 width = 7.0
 depth = 39.103
