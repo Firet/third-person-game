@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Materials/Green.material" type="Material" id=1]
+[ext_resource path="res://Materials/Brown.material" type="Material" id=2]
+
+[node name="Big-Tree" type="Spatial"]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
+
+[node name="Trunk" type="CSGPolygon" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.04557, 0 )
+use_collision = true
+polygon = PoolVector2Array( 0, 0, 0.0366414, 3.8153, 0.72058, 3.56188, 0.314482, 2.35183, 0.450075, 1.74224, 0.574514, 1.08259, 0.577177, 0.600926, 1, 0 )
+mode = 1
+spin_degrees = 360.0
+spin_sides = 10
+material = ExtResource( 2 )
+
+[node name="Treetop" type="CSGPolygon" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.414745, 0 )
+polygon = PoolVector2Array( 0, 0, 0.143171, 3.16864, 0.645112, 3.15751, 1.16016, 2.67705, 1.79158, 1.74726, 1.21439, 0.945496, 0.482663, 0.223768 )
+mode = 1
+spin_degrees = 360.0
+spin_sides = 10
+material = ExtResource( 1 )

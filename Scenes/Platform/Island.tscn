@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Materials/Green.material" type="Material" id=1]
+
+[node name="Island" type="CSGPolygon"]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )
+use_collision = true
+polygon = PoolVector2Array( 0.0547063, -0.421791, -0.0149334, 0.628698, 0.96985, 0.657179, 6.4498, 0.647933, 6.54282, 0.353371, 5.09326, 0.105319, 2.47321, -0.0807195, 1.26396, -0.344275 )
+mode = 1
+spin_degrees = 360.0
+spin_sides = 10
+material = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
