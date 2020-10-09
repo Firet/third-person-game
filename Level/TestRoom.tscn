@@ -23,14 +23,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.5, 0 )
 
 [node name="Enemies" type="Spatial" parent="."]
 
-[node name="RedEnemy" parent="Enemies" groups=[
-"Enemy",
-] instance=ExtResource( 4 )]
+[node name="RedEnemy" parent="Enemies" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6 )
 
-[node name="RedEnemy2" parent="Enemies" groups=[
-"Enemy",
-] instance=ExtResource( 4 )]
+[node name="RedEnemy2" parent="Enemies" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -6 )
 
 [node name="Floor" parent="." instance=ExtResource( 3 )]
