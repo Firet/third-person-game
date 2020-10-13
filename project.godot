@@ -19,6 +19,10 @@ config/name="Third Person"
 run/main_scene="res://Level/FirstLevel.tscn"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "CSGExport" )
+
 [input]
 
 move_forward={

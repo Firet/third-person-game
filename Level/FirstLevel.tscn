@@ -8,7 +8,6 @@
 [ext_resource path="res://Scenes/Environment/BigTree.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Materials/Water.material" type="Material" id=7]
 
-
 [node name="Main" type="Spatial"]
 
 [node name="Character" parent="." instance=ExtResource( 3 )]
@@ -37,5 +36,5 @@ material = ExtResource( 7 )
 [node name="BuildingOfColumns" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5715, 3.29333, 0 )
 
-[node name="stone" parent="." instance=ExtResource( 2 )]
+[node name="Stone" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.99865, -7 )
