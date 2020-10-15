@@ -2,7 +2,7 @@ extends KinematicBody
 
 export var gravity_force = 20
 export var jump_force = 10
-export var default_speed = 3
+export var default_speed = 25
 
 
 const MOVEMENT_ACELERATION = 5
