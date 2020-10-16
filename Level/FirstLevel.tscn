@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Platform/BuildingOfColumns.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Environment/Stone/stone.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Environment/ThinTree.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Environment/BigTree.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Materials/Water.material" type="Material" id=7]
+[ext_resource path="res://Scenes/Environment/Chest/Chest.tscn" type="PackedScene" id=8]
 
 [node name="Main" type="Spatial"]
 
@@ -51,6 +52,9 @@ transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.79973, -1.4 )
 
 [node name="BuildingOfColumns" parent="Island2" instance=ExtResource( 1 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.1143, 0.658666, 0 )
+
+[node name="Chest" parent="Island2" instance=ExtResource( 8 )]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.783816, 3.58371 )
 
 [node name="Island3" parent="." instance=ExtResource( 4 )]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -55.1922, 29.215, -54.4599 )
@@ -115,7 +119,7 @@ transform = Transform( 1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0 )
 use_collision = true
 
 [node name="Outer" type="CSGPolygon" parent="Bridge/CSGCombiner"]
-transform = Transform( 1, 0, 1.78814e-07, 0, 1, 0, -1.78814e-07, 0, 1, 0, 0, 0 )
+transform = Transform( 1, 0, 1.78814e-07, 0, 1, 0, -1.78814e-07, 0, 1, -0.109032, 0.0917358, -0.0808868 )
 use_collision = true
 polygon = PoolVector2Array( -12.0173, -4.96362, -12.122, -3.27648, -2.65018, -4.37863, 4.08397, -5.04428, 13.8577, -4.74883, 22.3379, -4.25041, 29.1009, -3.60353, 29.5581, -5.12112, 22.5069, -5.61609, 13.799, -6.04114, 3.96618, -6.3794, -2.66445, -6.08548 )
 depth = 2.0
