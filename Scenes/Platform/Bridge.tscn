@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Materials/Box.material" type="Material" id=1]
+
+[node name="Bridge" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="CSGCombiner2" type="CSGCombiner" parent="."]
+use_collision = true
+
+[node name="CSGPolygon" type="CSGPolygon" parent="CSGCombiner2"]
+polygon = PoolVector2Array( -12.1531, -0.0420289, -12.0418, 0.955646, 27.1052, 1.58802, 27.4566, 0.144036 )
+depth = 2.0
+material = ExtResource( 1 )
+
+[node name="CSGPolygon2" type="CSGPolygon" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10228, -0.293626 )
+operation = 2
+polygon = PoolVector2Array( -12.1531, -0.0420289, -12.0418, 0.955646, 27.1052, 1.58802, 27.4566, 0.144036 )
+depth = 1.5
+material = ExtResource( 1 )
