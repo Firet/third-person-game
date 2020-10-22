@@ -3,7 +3,6 @@
 [ext_resource path="res://Materials/Box.material" type="Material" id=1]
 
 [node name="Bridge" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="CSGCombiner2" type="CSGCombiner" parent="."]
 use_collision = true
