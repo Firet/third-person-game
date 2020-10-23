@@ -11,48 +11,6 @@
 
 [node name="Main" type="Spatial"]
 
-[node name="Island1" parent="." instance=ExtResource( 4 )]
-transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -33.8667, 1.01717, 15.5141 )
-
-[node name="Tree" parent="Island1" instance=ExtResource( 5 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.24817, 0 )
-
-[node name="Tree2" parent="Island1" instance=ExtResource( 6 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.787411, 1.5424, 0 )
-
-[node name="Tree4" parent="Island1" instance=ExtResource( 5 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.987015, 1.24817, 0.862948 )
-
-[node name="Tree3" parent="Island1" instance=ExtResource( 5 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.150187, 1.24817, 0.862948 )
-
-[node name="Stone" parent="Island1" instance=ExtResource( 2 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.79973, -1.4 )
-
-[node name="BuildingOfColumns" parent="Island1" instance=ExtResource( 1 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.1143, 0.658667, 0 )
-
-[node name="Island2" parent="." instance=ExtResource( 4 )]
-transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 34.0251, 1.01717, -54.4599 )
-
-[node name="Tree" parent="Island2" instance=ExtResource( 5 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.24817, 0 )
-
-[node name="Tree2" parent="Island2" instance=ExtResource( 6 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.78741, 1.5424, 0 )
-
-[node name="Tree4" parent="Island2" instance=ExtResource( 5 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.987015, 1.24817, 0.862947 )
-
-[node name="Tree3" parent="Island2" instance=ExtResource( 5 )]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.150186, 1.24817, 0.862947 )
-
-[node name="Stone" parent="Island2" instance=ExtResource( 2 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.79973, -1.4 )
-
-[node name="BuildingOfColumns" parent="Island2" instance=ExtResource( 1 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.1143, 0.658667, 0 )
-
 [node name="Water" type="CSGPolygon" parent="."]
 transform = Transform( 1000, 0, 0, 0, -4.37114e-05, -1000, 0, 1000, -4.37114e-05, 0, 1.52343, 4.83298 )
 polygon = PoolVector2Array( -24.6055, -11.8007, -25.8577, 26.708, 25.3341, 27.1791, 24.2021, -12.7208 )
@@ -60,8 +18,57 @@ depth = 0.001
 material = ExtResource( 7 )
 
 [node name="Character" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.3047, 11.0575, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.3047, 4.47014, 0 )
 default_speed = 10
 
-[node name="Spatial" parent="." instance=ExtResource( 9 )]
+[node name="Bridge" parent="." instance=ExtResource( 9 )]
 transform = Transform( 0.563814, 0, 0.825902, 0, 1, 0, -0.825902, 0, 0.563814, -1.83991, 2.90118, -18.4445 )
+
+[node name="Islands" type="Spatial" parent="."]
+
+[node name="Island1" parent="Islands" instance=ExtResource( 4 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -33.8667, 1.01717, 15.5141 )
+
+[node name="Stone" parent="Islands/Island1" instance=ExtResource( 2 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.79973, -1.4 )
+
+[node name="BuildingOfColumns" parent="Islands/Island1" instance=ExtResource( 1 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.1143, 0.658667, 0 )
+
+[node name="Trees" type="Spatial" parent="Islands/Island1"]
+
+[node name="Tree" parent="Islands/Island1/Trees" instance=ExtResource( 5 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.24817, 0 )
+
+[node name="Tree2" parent="Islands/Island1/Trees" instance=ExtResource( 6 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.787411, 1.5424, 0 )
+
+[node name="Tree4" parent="Islands/Island1/Trees" instance=ExtResource( 5 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.987015, 1.24817, 0.862948 )
+
+[node name="Tree3" parent="Islands/Island1/Trees" instance=ExtResource( 5 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.150187, 1.24817, 0.862948 )
+
+[node name="Island2" parent="Islands" instance=ExtResource( 4 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 34.0251, 1.01717, -54.4599 )
+
+[node name="Trees" type="Spatial" parent="Islands/Island2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5784, 0, 13.9948 )
+
+[node name="Tree" parent="Islands/Island2/Trees" instance=ExtResource( 5 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 13.5784, 1.24817, -13.9948 )
+
+[node name="Tree2" parent="Islands/Island2/Trees" instance=ExtResource( 6 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 14.3658, 1.5424, -13.9948 )
+
+[node name="Tree3" parent="Islands/Island2/Trees" instance=ExtResource( 5 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 13.7285, 1.24817, -13.1319 )
+
+[node name="Tree4" parent="Islands/Island2/Trees" instance=ExtResource( 5 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 12.5913, 1.24817, -13.1319 )
+
+[node name="Stone" parent="Islands/Island2" instance=ExtResource( 2 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.79973, -1.4 )
+
+[node name="BuildingOfColumns" parent="Islands/Island2" instance=ExtResource( 1 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.1143, 0.658667, 0 )
