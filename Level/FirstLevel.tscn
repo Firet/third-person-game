@@ -21,7 +21,7 @@ material = ExtResource( 7 )
 [node name="Character" parent="." groups=[
 "Character",
 ] instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.3047, 4.47014, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7954, 4.47014, -1.22985 )
 default_speed = 10
 
 [node name="Bridge" parent="." instance=ExtResource( 9 )]
