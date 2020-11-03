@@ -139,11 +139,11 @@ func walking(delta):
 	movement_vector = movementDirection * current_speed
 	# Second argument is time. If we omit interpolate, the movement less subtle
 	movement_vector.linear_interpolate(movement_vector, MOVEMENT_ACELERATION * delta)
-	velocity = move_and_slide(movement_vector, Vector3.UP)
+	velocity = move_and_slide(movement_vector, Vector3.UP, true)
 
 
 func jump(delta):
-	velocity = move_and_slide(vertical_vector, Vector3.UP)
+	velocity = move_and_slide(vertical_vector, Vector3.UP, true)
 	
 	if is_on_floor():
 		number_of_jumps = 0

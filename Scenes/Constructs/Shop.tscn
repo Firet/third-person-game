@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Environment" id=1]
+
+[node name="Shop" type="Spatial"]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+invert_faces = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.662483, 0 )
+light_color = Color( 0.501961, 0.47451, 0.105882, 1 )
+omni_range = 1.8

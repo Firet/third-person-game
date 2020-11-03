@@ -1,0 +1,16 @@
+newmtl [SpatialMaterial:292120]
+Kd 0.603922 0.603922 0.505882
+Ke 0 0 0
+d 1
+newmtl [SpatialMaterial:220647]
+Kd 0.007843 0.007843 0.007843
+Ke 0 0 0
+d 1
+newmtl [SpatialMaterial:345040]
+Kd 0.701961 0.513726 0.266667
+Ke 0 0 0
+d 1
+newmtl [SpatialMaterial:469082]
+Kd 0.952941 0.082353 0.082353
+Ke 0 0 0
+d 1

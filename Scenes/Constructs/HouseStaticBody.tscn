@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Models/House.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Materials/Wood.material" type="Material" id=2]
+[ext_resource path="res://Materials/Cream.material" type="Material" id=3]
+[ext_resource path="res://Materials/Red.material" type="Material" id=4]
+[ext_resource path="res://Materials/Black.material" type="Material" id=5]
+
+[sub_resource type="ConvexPolygonShape" id=1]
+points = PoolVector3Array( 1.37956, 3.17589, -0.677016, 1.37956, 4.06257, -0.677016, 1.37956, 4.06257, 0.604, 1.4, 3.19633, 0.574469, 2.26641, 3.17589, -0.677016, 2.26641, 3.17589, 0.604, 2.26641, 4.06257, -0.677016, 2.26641, 4.06257, 0.604 )
+
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( -3.05388, 1.79633, 2.37768, -3.05388, 1.8949, -2.25284, -3.05388, 2.19041, 1.78632, -3.05388, 2.97838, 0.505306, -3.05388, 3.07695, -0.282163, -3.01006, 1.34395, -2.0561, -3.01006, 1.34395, 2.0821, -2.95573, 1.20511, 2.37768, -2.95573, 1.69776, -2.54927, -2.83775, 1.43371, 2.47253, -2.80779, 1.62897, 2.44655, -2.80461, 1.34902, -2.41827, -2.74687, 3.07647, 0.101186, -2.64116, 1.30997, -2.1, 1.37958, 3.17552, -0.676399, 1.37958, 3.17552, 0.603614, 2.2, 3.14682, 0.586399, 2.64097, 1.30997, -2.1, 2.80443, 1.34902, -2.41827, 2.80761, 1.62897, 2.44655, 2.83757, 1.43371, 2.47253, 2.95555, 1.20511, 2.37768, 2.95555, 1.69776, -2.54927, 3.00998, 1.34392, -2.05617, 3.00998, 1.34392, 2.08217, 3.05432, 1.79633, 2.37768, 3.05432, 1.8949, -2.25284, 3.05432, 2.19041, 1.78632, 3.05432, 2.97838, 0.505306, 3.05432, 3.07695, -0.282163 )
+
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( -2.76198, -1.702, -2.1781, -2.75741, -1.69963, 2.2, -2.68859, 1.16761, -2.1, -2.65611, 1.15021, 2.1, -2.46286, -0.371271, 2.27917, 2.46314, -0.371271, 2.27917, 2.65639, 1.15021, 2.1, 2.68887, 1.16761, -2.1, 2.75769, -1.69963, 2.2, 2.76226, -1.702, -2.1781 )
+
+[node name="HouseStaticBody" type="StaticBody"]
+
+[node name="House" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 5 )
+material/2 = ExtResource( 2 )
+material/3 = ExtResource( 4 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+shape = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 3 )
