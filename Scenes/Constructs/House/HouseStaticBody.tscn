@@ -1,6 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Constructs/House/House.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Materials/Wood.material" type="Material" id=2]
+[ext_resource path="res://Materials/Cream.material" type="Material" id=3]
+[ext_resource path="res://Materials/Red.material" type="Material" id=4]
+[ext_resource path="res://Materials/Black.material" type="Material" id=5]
 
 [sub_resource type="ConvexPolygonShape" id=1]
 points = PoolVector3Array( 1.37956, 3.17589, -0.677016, 1.37956, 4.06257, -0.677016, 1.37956, 4.06257, 0.604, 1.4, 3.19633, 0.574469, 2.26641, 3.17589, -0.677016, 2.26641, 3.17589, 0.604, 2.26641, 4.06257, -0.677016, 2.26641, 4.06257, 0.604 )
@@ -15,10 +19,10 @@ points = PoolVector3Array( -2.76198, -1.702, -2.1781, -2.75741, -1.69963, 2.2, -
 
 [node name="House" type="MeshInstance" parent="."]
 mesh = ExtResource( 1 )
-material/0 = null
-material/1 = null
-material/2 = null
-material/3 = null
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 5 )
+material/2 = ExtResource( 2 )
+material/3 = ExtResource( 4 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="."]
 shape = SubResource( 1 )

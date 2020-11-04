@@ -10,7 +10,7 @@
 [ext_resource path="res://Scenes/Coin/Coin.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Platform/Bridge/Bridge.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Constructs/House.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Constructs/HouseStaticBody.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Constructs/House/HouseStaticBody.tscn" type="PackedScene" id=11]
 
 [node name="Main" type="Spatial"]
 
@@ -84,4 +84,4 @@ transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -
 [node name="House" parent="." instance=ExtResource( 10 )]
 
 [node name="HouseStaticBody" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26.33, 6.21615, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8758, 5.92774, 0 )
