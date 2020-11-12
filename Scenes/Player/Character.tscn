@@ -35,7 +35,7 @@ shape = SubResource( 3 )
 [node name="Pivot" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="Pivot"]
-transform = Transform( 1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 1.6, 2.75 )
+transform = Transform( 1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 2.1, 2.75 )
 fov = 65.0
 
 [node name="Enemycast" type="RayCast" parent="Pivot/Camera"]
