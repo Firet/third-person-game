@@ -3,6 +3,7 @@ extends KinematicBody
 export var gravity_force = 20
 export var jump_force = 10
 export var default_speed = 25
+export (PackedScene) var fire
 
 
 const MOVEMENT_ACELERATION = 5
@@ -56,7 +57,7 @@ func _input(event):
 func _process(_delta: float): 
 	manage_states()
 	sprint()
-	shoot()
+	shoot(_delta)
 	walking(_delta)
 	jump(_delta)
 	crouch(_delta)
@@ -164,14 +165,15 @@ func jump(delta):
 			number_of_jumps = 2
 
 
-func shoot():
-	if Input.is_action_just_pressed("shoot") and enemy_cast.is_colliding():
-		var target = enemy_cast.get_collider()
-		if target.is_in_group("Enemy"):
-			print("shoot the enemy")
-			target.health -= SHOOT_DAMAGE
+func shoot(_delta):
+	
+	if(Input.is_action_just_pressed("shoot")):
+		var new_fire = fire.instance()
+		get_tree().get_nodes_in_group("mainTest")[0].add_child(new_fire)
+		new_fire.translation = get_node("Spawn_fire").global_transform.origin
+		# normalized to simplify the float numbers. 
+		new_fire.current_speed = (-new_fire.speed_desplacement * _delta) * global_transform.basis.z.normalized()
 
-			
 func sprint():
 	if Input.is_action_just_pressed("move_sprint") and not is_sprinting:
 		is_sprinting = true

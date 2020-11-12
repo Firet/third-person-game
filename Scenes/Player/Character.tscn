@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Player/character.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Player/Magic/Fire.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.745098, 0.12549, 0.12549, 1 )
@@ -19,6 +20,7 @@ height = 0.95
 
 [node name="Character" type="KinematicBody"]
 script = ExtResource( 1 )
+fire = ExtResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.5, 0 )
@@ -47,4 +49,7 @@ one_shot = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="Spawn_fire" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5 )
 [connection signal="timeout" from="TimerSprint" to="." method="_on_Timer_sprint_timeout"]
