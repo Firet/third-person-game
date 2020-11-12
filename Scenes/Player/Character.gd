@@ -169,10 +169,13 @@ func shoot(_delta):
 	
 	if(Input.is_action_just_pressed("shoot")):
 		var new_fire = fire.instance()
-		get_tree().get_nodes_in_group("mainTest")[0].add_child(new_fire)
-		new_fire.translation = get_node("Spawn_fire").global_transform.origin
-		# normalized to simplify the float numbers. 
-		new_fire.current_speed = (-new_fire.speed_desplacement * _delta) * global_transform.basis.z.normalized()
+		var test_scene = get_tree().get_nodes_in_group("mainTest")
+		
+		if test_scene != []:
+			test_scene[0].add_child(new_fire)
+			new_fire.translation = get_node("Spawn_fire").global_transform.origin
+			# normalized to simplify the float numbers. 
+			new_fire.current_speed = (-new_fire.speed_desplacement * _delta) * global_transform.basis.z.normalized()
 
 func sprint():
 	if Input.is_action_just_pressed("move_sprint") and not is_sprinting:
