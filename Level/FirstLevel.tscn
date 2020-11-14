@@ -6,19 +6,13 @@
 [ext_resource path="res://Scenes/Platform/Island.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Environment/ThinTree.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Environment/BigTree.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Materials/Water.material" type="Material" id=7]
+[ext_resource path="res://Scenes/Environment/Water/Water.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Coin/Coin.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Platform/Bridge/Bridge.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Constructs/House.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Constructs/House/HouseStaticBody.tscn" type="PackedScene" id=11]
 
 [node name="Main" type="Spatial"]
-
-[node name="Water" type="CSGPolygon" parent="."]
-transform = Transform( 1000, 0, 0, 0, -4.37114e-05, -1000, 0, 1000, -4.37114e-05, 0, 1.52343, 4.83298 )
-polygon = PoolVector2Array( -24.6055, -11.8007, -25.8577, 26.708, 25.3341, 27.1791, 24.2021, -12.7208 )
-depth = 0.001
-material = ExtResource( 7 )
 
 [node name="Character" parent="." groups=[
 "Character",
@@ -85,3 +79,5 @@ transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -
 
 [node name="HouseStaticBody" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.8758, 5.92774, 0 )
+
+[node name="Water" parent="." instance=ExtResource( 7 )]
