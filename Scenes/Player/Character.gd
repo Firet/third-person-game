@@ -22,6 +22,7 @@ var is_sprinting = false
 var is_walking = false
 var is_jumping = false
 var is_crouching = false
+var is_swimming = false
 var number_of_jumps = 0
 var movement_vector = Vector3()
 var vertical_vector = Vector3()
@@ -34,7 +35,9 @@ enum {
 	RUNNING,
 	JUMPING,
 	CROUCH_IDLE,
-	CROUCH_WALKING
+	CROUCH_WALKING,
+	SWIMMING_IDLE,
+	SWIMMING
 }
 
 
@@ -61,6 +64,7 @@ func _process(_delta: float):
 	walking(_delta)
 	jump(_delta)
 	crouch(_delta)
+	swim(_delta)
 
 
 func set_mouse_captured():
@@ -87,6 +91,10 @@ func manage_states():
 	
 	if is_jumping:
 		state = JUMPING
+	elif is_swimming and !is_walking:
+		state = SWIMMING_IDLE
+	elif is_swimming and is_walking:
+		state = SWIMMING
 	elif is_crouching and !is_walking:
 		state = CROUCH_IDLE
 	elif is_crouching and is_walking:
@@ -113,7 +121,17 @@ func manage_states():
 			anim.play("crouch-idle")
 		CROUCH_WALKING:
 			anim.play("crouch-walking")
+		SWIMMING_IDLE:
+			anim.play("trading-water")
+		SWIMMING:
+			anim.play("trading-water")
 
+func swim(delta):
+	var collision = move_and_collide(velocity * delta)
+	if collision and collision.collider.name == "Water":
+		is_swimming = true
+	elif collision and collision.collider.name != "Water":
+		is_swimming = false
 
 func walking(delta):
 	#Every frame we are assigning a Vector3 to direction. If it's not here it going to throw errors
@@ -176,6 +194,7 @@ func shoot(_delta):
 			new_fire.translation = get_node("Spawn_fire").global_transform.origin
 			# normalized to simplify the float numbers. 
 			new_fire.current_speed = (-new_fire.speed_desplacement * _delta) * global_transform.basis.z.normalized()
+
 
 func sprint():
 	if Input.is_action_just_pressed("move_sprint") and not is_sprinting:
