@@ -3,7 +3,7 @@ extends KinematicBody
 var current_speed = Vector3()
 var speed_desplacement = 20
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	var enemy = move_and_collide(current_speed)
 	

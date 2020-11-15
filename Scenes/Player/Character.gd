@@ -43,7 +43,6 @@ enum {
 
 onready var pivot = $Pivot
 onready var timer_sprint = $TimerSprint
-onready var enemy_cast = $Pivot/Camera/Enemycast
 onready var anim = $Player/AnimationPlayer
 onready var collision_player = $CollisionShape
 

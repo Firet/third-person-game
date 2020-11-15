@@ -15,9 +15,9 @@ points = PoolVector3Array( -3.05388, 1.79633, 2.37768, -3.05388, 1.8949, -2.2528
 [sub_resource type="ConvexPolygonShape" id=3]
 points = PoolVector3Array( -2.76198, -1.702, -2.1781, -2.75741, -1.69963, 2.2, -2.68859, 1.16761, -2.1, -2.65611, 1.15021, 2.1, -2.46286, -0.371271, 2.27917, 2.46314, -0.371271, 2.27917, 2.65639, 1.15021, 2.1, 2.68887, 1.16761, -2.1, 2.75769, -1.69963, 2.2, 2.76226, -1.702, -2.1781 )
 
-[node name="HouseStaticBody" type="StaticBody"]
+[node name="House" type="StaticBody"]
 
-[node name="House" type="MeshInstance" parent="."]
+[node name="HouseMesh" type="MeshInstance" parent="."]
 mesh = ExtResource( 1 )
 material/0 = ExtResource( 3 )
 material/1 = ExtResource( 5 )
