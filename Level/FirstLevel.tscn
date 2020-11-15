@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Scenes/Platform/BuildingOfColumns.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Environment/Stone/stone.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player/Character.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Platform/Island.tscn" type="PackedScene" id=4]
@@ -30,9 +29,6 @@ transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, -33.8667, 1.01717, 15.5141 )
 
 [node name="Stone" parent="Islands/Island1" instance=ExtResource( 2 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.79973, -1.4 )
-
-[node name="BuildingOfColumns" parent="Islands/Island1" instance=ExtResource( 1 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.1143, 0.658667, 0 )
 
 [node name="Trees" type="Spatial" parent="Islands/Island1"]
 
@@ -68,9 +64,6 @@ transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 12.5913, 1.24817, -13.13
 
 [node name="Stone" parent="Islands/Island2" instance=ExtResource( 2 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.79973, -1.4 )
-
-[node name="BuildingOfColumns" parent="Islands/Island2" instance=ExtResource( 1 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.1143, 0.658667, 0 )
 
 [node name="Coin" parent="." instance=ExtResource( 8 )]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -13.4105, 5.46031, 8.54339 )
