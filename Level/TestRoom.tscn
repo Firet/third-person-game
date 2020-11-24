@@ -1,14 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Scenes/Player/Character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Floor/Floor.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Enemy/RedEnemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Platform/Platform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Level/LevelChange/LevelChange.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Level/TestRoom.gd" type="Script" id=7]
 
 [node name="Main" type="Spatial" groups=[
 "mainTest",
 ]]
+script = ExtResource( 7 )
+
+[node name="LevelChange" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1, 0 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 60, 0 )
@@ -32,3 +38,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -6 )
 
 [node name="Floor" parent="." instance=ExtResource( 3 )]
+
+[node name="SpawnPlayer" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -39.5, 0.9, 0 )
